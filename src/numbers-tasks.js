@@ -99,16 +99,17 @@ function getLinearEquationRoot(a, b) {
  * @param {number} y2
  * @return {number}
  *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
  * @example:
  *   (1,0) (0,1)     => π/2
  *   (0,1) (0,-1)    => π
  *   (0,-1) (1,0)    => π/2
  *   (0,1) (0,1)     => 0
  */
-function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
-  throw new Error('Not implemented');
+function getAngleBetweenVectors(x1, y1, x2, y2) {
+  const ab = x1 * x2 + y1 * y2;
+  const mA = Math.sqrt(x1 ** 2 + y1 ** 2);
+  const mB = Math.sqrt(x2 ** 2 + y2 ** 2);
+  return Math.acos(ab / (mA * mB));
 }
 
 /**
@@ -118,16 +119,14 @@ function getAngleBetweenVectors(/* x1, y1, x2, y2 */) {
  * @param {number} value
  * @return {number}
  *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
  * @example:
  *   100     => 0
  *    37     => 7
  *     5     => 5
  *     0     => 0
  */
-function getLastDigit(/* value */) {
-  throw new Error('Not implemented');
+function getLastDigit(value) {
+  return value % 10;
 }
 
 /**
@@ -252,8 +251,6 @@ function getCube(num) {
  * @param {number} index
  * @return {number}
  *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
  * @example:
  *   0  => 0
  *   1  => 1
@@ -261,8 +258,12 @@ function getCube(num) {
  *   3  => 2
  *   10 => 55
  */
-function getFibonacciNumber(/* index */) {
-  throw new Error('Not implemented');
+function getFibonacciNumber(index) {
+  const nums = [0, 1];
+  for (let i = 2; i <= index; i += 1) {
+    nums.push(nums[i - 1] + nums[i - 2]);
+  }
+  return nums[index];
 }
 
 /**
@@ -290,15 +291,18 @@ function getSumToN(n) {
  * @param {number} num
  * @return {number}
  *
- * !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
- *
  * @example:
  *   123 => 6  // (1+2+3)
  *   202 => 4  // (2+0+2)
  *   5   => 5  // 5
  */
-function getSumOfDigits(/* num */) {
-  throw new Error('Not implemented');
+function getSumOfDigits(num) {
+  const digits = num.toString().split('');
+  let sum = 0;
+  for (let i = 0; i < digits.length; i += 1) {
+    sum += +digits[i];
+  }
+  return sum;
 }
 
 /**
@@ -314,8 +318,9 @@ function getSumOfDigits(/* num */) {
  *   16  => true
  *   15  => false
  */
-function isPowerOfTwo(/* num */) {
-  throw new Error('Not implemented');
+function isPowerOfTwo(num) {
+  const log = Math.log(num) / Math.log(2);
+  return parseInt(log, 10) === log;
 }
 
 /**
